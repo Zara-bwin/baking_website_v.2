@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+
+           .card{
+             width: auto;
+             position: relative;
+             height: auto;
+             background: #f0f0f0;
+             margin: 30px 10px;
+             padding: 20px 15px;
+             display: flex;
+             flex-direction: column;
+             box-shadow: 0.5px 10px #e6e6e6;
+             transition: 0,3s ease-in-out;
+             margin-top: 5%;
+           }
+
+         img{
+             width: 100%;
+             height: 50%;
+           }
+            .carousel {
+             position: relative;
+            }
+
+            .carousel__item {
+             height: auto;
+             background: grey;
+             padding: 1em;
+             font-family: "Quicksand", sans-serif;
+             font-weight: bold;
+             font-size: 2em;
+             color: #ffffff;
+             display: none;
+            }
+
+            .carousel__item--selected {
+             display: block;
+            }
+
+            .carousel__nav {
+              width: 100%;
+             padding: 20px 0;
+             position: absolute;
+             bottom: 0;
+             left: 0;
+             text-align: center;
+            }
+
+            .carousel__button {
+             width: 10px;
+             height: 10px;
+             display: inline-block;
+             background: rgba(255, 255, 255, 0.2);
+             border-radius: 50%;
+             margin: 0 5px;
+             cursor: pointer;
+            }
+
+            .carousel__button--selected {
+             background: rgba(255, 255, 255, 0.5);
+            }
+
+            h1, h2, i, ul, p {
+                color: rgba(91, 88, 88, 0.5);
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="carousel">
+
+            <div class="carousel__item">
+                <div class="card">
+                <h1>Victoria Sponge Cake</h1>
+                <a href="#">
+                  <img src="IMG_20220507_185659_2.jpg">
+                </a>
+              </div>
+            </div>
+
+            <div class="carousel__item">
+                <div class="card">
+                    <h2>Main Cake</h2>
+                    <i>ingredients:</i>
+                    <ul>
+                        <li>200g caster sugar</li>
+                        <li>200g unsalted butter</li>
+                        <li>4 eggs</li>
+                        <li>200g self-raising flour</li>
+                        <li>1 tsp baking powder</li>
+                        <li>2 tbs milk</li>
+                    </ul>
+                    <I>How to smush it all together</I>
+                    <p>
+                        Pre heat the oven to 190 on fan</br>
+                        line two tins with parchment paper</br>
+                        Then in a large bowl, mix the sugar, butter, eggs, flour, baking powder and milk till until smooth (To adjust the consdistancy add more or less milk)</br>
+                        Divide the mixture into the two bowls use a spoon to spread the mixture till even</br>
+                        Bake for 20 mins until gloden and cooked in the inside(use a tooth pick to check)</br>
+                        Put them on a cooling rack and resist the urge to eat it (I know it's hard)
+                    </p>
+                   </div>
+            </div>
+
+            <div class="carousel__item">
+                
+             <div class="card">
+                 <h2>Icing and filling</h2>
+                 <i>ingredients</i>
+                 <ul>
+                     <li>100g softened butter</li>
+                     <li>150g icing sugar</li>
+                     <li>vanilla extract</br> (Or if you are fancy, you can use vanilla beans)</li>
+                     <li>350g strawberry jam</li>
+                 </ul>
+                 <I>How to smush it all together</I>
+                 <p>
+                     Use a spatula to mix the butter until it is smooth </br>
+                     Gradually mix in the icing sugar to the butter</br>
+                     Add in a drop of vanilla extract</br>
+                     Decorating:</br>
+                     Spread the buttercream over the bottom of one of the sponges</br>
+                     top it with the jam then put the last cake layer on</br>
+                     Dust with icing sugar and decorate with cream and raspberries to be fancy and enjoy :)
+                 </p>
+             </div>
+            </div>
+        </div>
+
+        <script>
+            document.querySelectorAll(".carousel").forEach((carousel) => {
+  const items = carousel.querySelectorAll(".carousel__item");
+  const buttonsHtml = Array.from(items, () => {
+    return `<span class="carousel__button"></span>`;
+  });
+
+  carousel.insertAdjacentHTML(
+    "beforeend",
+    `
+		<div class="carousel__nav">
+			${buttonsHtml.join("")}
+		</div>
+	`
+  );
+
+  const buttons = carousel.querySelectorAll(".carousel__button");
+
+  buttons.forEach((button, i) => {
+    button.addEventListener("click", () => {
+      // un-select all the items
+      items.forEach((item) =>
+        item.classList.remove("carousel__item--selected")
+      );
+      buttons.forEach((button) =>
+        button.classList.remove("carousel__button--selected")
+      );
+
+      items[i].classList.add("carousel__item--selected");
+      button.classList.add("carousel__button--selected");
+    });
+  });
+
+  // Select the first item on page load
+  items[0].classList.add("carousel__item--selected");
+  buttons[0].classList.add("carousel__button--selected");
+});
+
+        </script>
+    </body>
+</html>
